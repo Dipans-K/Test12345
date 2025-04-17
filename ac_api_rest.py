@@ -2351,10 +2351,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Example of accessing environment variables
-DB_SERVER = os.getenv("DB_SERVER", "default_server")
-DATABASE = os.getenv("DATABASE", "default_database")
-DB_UID = os.getenv("DB_UID", "default_uid")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "default_password")
+#DB_SERVER = os.getenv("DB_SERVER", "default_server")
+#DATABASE = os.getenv("DATABASE", "default_database")
+#DB_UID = os.getenv("DB_UID", "default_uid")
+#DB_PASSWORD = os.getenv("DB_PASSWORD", "default_password")
 
 # set AI module
 ai_module = 'ac'
@@ -2362,15 +2362,20 @@ module = 'ac_api_rest'
  
 module_dir = set_module_dir(ai_module)
 print('Training/reference data path: ', module_dir)
-ai_type, ai_type_dl, ai_type_knn, db_type, num_threads_gprc_server = params.ai_type, params.ai_type_dl, params.ai_type_knn, params.db_type, "server"
+
+# Replace read_init_param with environment variable loading
+ai_type = os.getenv("AI_TYPE", "DL")
+ai_type_dl = os.getenv("AI_TYPE_DL", "DL_Class")
+ai_type_knn = os.getenv("AI_TYPE_KNN", "kNN_Class")
+db_type = os.getenv("DB_TYPE", "File")
+num_threads_gprc_server = os.getenv("NUM_THREADS_GPRC_SERVER", "server")
+
 print('db_type: ', db_type) 
 #  print or log these values to verify
 print(f"AI Type: {ai_type}")
 print(f"AI Type (DL): {ai_type_dl}")
 print(f"AI Type (KNN): {ai_type_knn}")
 print(f"Database Type: {db_type}")
-
- 
 if db_type == "File":
    
     session = 0
